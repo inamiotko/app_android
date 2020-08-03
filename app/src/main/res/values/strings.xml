@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">picture_game</string>
+    <string name="dog_button">dog</string>
+    <string name="cat_button">cat</string>
+    <string name="number_of_points">Points:</string>
+    <string name="start_button">Swiper</string>
+    <string name="uno">1</string>
+    <string name="due">2</string>
+    <string name="trio">3</string>
+    <string name="dog_content">dog</string>
+    <string name="cat_content">cat</string>
+    <string name="game_2">Catcher</string>
+</resources>
