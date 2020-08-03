@@ -2,6 +2,7 @@ package com.example.picture_game
 
 import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.graphics.Rect
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -12,6 +13,7 @@ import android.view.MotionEvent.ACTION_MOVE
 import android.view.VelocityTracker
 import android.view.View
 import android.view.View.OnTouchListener
+import android.widget.Button
 import android.widget.ImageSwitcher
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
@@ -28,9 +30,12 @@ class SecondActivity : AppCompatActivity() {
         setContentView(R.layout.activity_second)
         val imgCat: ImageView = findViewById(R.id.cat_img)
         val imgDog: ImageView = findViewById(R.id.dog_img)
-
+        val exitButton: Button = findViewById(R.id.back_button2)
         val images = intArrayOf(R.drawable.bone,
             R.drawable.meat, R.drawable.fish, R.drawable.mouse)
+        exitButton.setOnClickListener {
+            val intent = Intent(this, FirstActivity::class.java)
+            startActivity(intent)}
         val imgSwitcher = findViewById<ImageSwitcher>(R.id.imsw)
         imgSwitcher?.setFactory {
             val imgView = ImageView(applicationContext)

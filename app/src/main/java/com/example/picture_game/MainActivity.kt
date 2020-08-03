@@ -1,5 +1,6 @@
 package com.example.picture_game
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -18,6 +19,7 @@ class MainActivity : AppCompatActivity() {
         var seconds = 0
         val catButton: Button = findViewById(R.id.cat_button)
         val dogButton: Button = findViewById(R.id.dog_button)
+        val exitButton: Button = findViewById(R.id.back_button)
         val toast = Toast.makeText(this, "game over", Toast.LENGTH_SHORT)
         val toastBad = Toast.makeText(this, "WRONG!", Toast.LENGTH_SHORT)
         var counter = 0
@@ -25,6 +27,9 @@ class MainActivity : AppCompatActivity() {
         val onetext: TextView = findViewById(R.id.countdown_text)
         val twotext: TextView = findViewById(R.id.countdown_text2)
         val threetext: TextView = findViewById(R.id.countdown_text3)
+        exitButton.setOnClickListener {
+            val intent = Intent(this, FirstActivity::class.java)
+            startActivity(intent)}
         val timer = object : CountDownTimer(300000, 1500) {
             override fun onTick(millisUntilFinished: Long) {
                 seconds++
@@ -70,6 +75,7 @@ class MainActivity : AppCompatActivity() {
         timer.start()
 
     }
+
     fun pickNumber(): Int {
         val number = Rand(12)
         val numberGenerated = number.generateNumber()

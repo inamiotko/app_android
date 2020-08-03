@@ -10,4 +10,5 @@
     <string name="dog_content">dog</string>
     <string name="cat_content">cat</string>
     <string name="game_2">Catcher</string>
+    <string name="exit_button">Exit</string>
 </resources>
