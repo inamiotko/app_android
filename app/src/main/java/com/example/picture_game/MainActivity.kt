@@ -27,9 +27,7 @@ class MainActivity : AppCompatActivity() {
         val onetext: TextView = findViewById(R.id.countdown_text)
         val twotext: TextView = findViewById(R.id.countdown_text2)
         val threetext: TextView = findViewById(R.id.countdown_text3)
-        exitButton.setOnClickListener {
-            val intent = Intent(this, FirstActivity::class.java)
-            startActivity(intent)}
+
         val timer = object : CountDownTimer(300000, 1500) {
             override fun onTick(millisUntilFinished: Long) {
                 seconds++
@@ -74,6 +72,10 @@ class MainActivity : AppCompatActivity() {
 
         timer.start()
 
+        exitButton.setOnClickListener {
+            timer.cancel()
+            val intent = Intent(this, FirstActivity::class.java)
+            startActivity(intent)}
     }
 
     fun pickNumber(): Int {

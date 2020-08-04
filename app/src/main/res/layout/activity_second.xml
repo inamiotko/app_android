@@ -6,6 +6,23 @@
     android:layout_height="match_parent"
     android:clipChildren="false">
 
+    <TextView
+        android:id="@+id/points_text2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/back_button2"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="-1dp"
+        android:layout_marginEnd="47dp"
+        android:fontFamily="sans-serif-black"
+        android:text="@string/number_of_points"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.913"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <Button
         android:id="@+id/back_button2"
         android:layout_width="59dp"
@@ -47,6 +64,15 @@
         android:layout_marginEnd="4dp"
         android:contentDescription="@string/dog_content"
         app:srcCompat="@drawable/doglvl2" />
+
+    <TextView
+        android:id="@+id/couter_text2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/points_text2"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="9dp"
+        android:layout_marginEnd="85dp" />
 
 
 </RelativeLayout>
