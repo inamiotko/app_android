@@ -25,7 +25,6 @@ class SecondActivity : AppCompatActivity() {
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         var catB = false
         var dogB = false
         setContentView(R.layout.activity_second)
@@ -38,9 +37,7 @@ class SecondActivity : AppCompatActivity() {
             R.drawable.meat, R.drawable.fish, R.drawable.mouse)
 
         val imgSwitcher = findViewById<ImageSwitcher>(R.id.imsw)
-        val imgsR = imgSwitcher.clipBounds
-        val dogR = imgDog.clipBounds
-        val catR = imgDog.clipBounds
+        imgSwitcher.visibility = ImageSwitcher.VISIBLE
 
         imgSwitcher?.setFactory {
             val imgView=ImageView(applicationContext)
@@ -48,6 +45,7 @@ class SecondActivity : AppCompatActivity() {
             imgView.setPadding(8, 8, 8, 8)
             imgView
         }
+
         var tick = 3
         var counter = 0
         val timer = object : CountDownTimer(3000000, 1000) {
@@ -59,7 +57,14 @@ class SecondActivity : AppCompatActivity() {
                 if(tick%3==0){
                 rand = (0..3).random()
                 imgSwitcher.setImageResource(images[rand])
-                if(catB || dogB)counter++
+                if(catB || dogB){
+                    counter++
+                    imgSwitcher.visibility = ImageSwitcher.INVISIBLE
+                    catB = false
+                    dogB = false
+                }else {
+                    imgSwitcher.visibility = ImageSwitcher.VISIBLE
+                }
                 when ((1..5).random()) {
                     1 -> ObjectAnimator.ofFloat(imgSwitcher, "translationX", -150f, 100f, 200f, -150f).apply {
                         duration = 3000
@@ -104,25 +109,27 @@ class SecondActivity : AppCompatActivity() {
                 view.x = motionEvent.rawX - view.width/2
                 when(rand)
                 {
-                    0 ->
-                        if((imgDog.x + imgDog.width/2) >= (imgSwitcher.x + imgSwitcher.width/2)
-                            && (imgDog.y + imgDog.height/2) >= (imgSwitcher.y + imgSwitcher.height/2)) dogB=true
-                    1 ->
-                        if((imgDog.x + imgDog.width/2) >= (imgSwitcher.x + imgSwitcher.width/2)
-                            && (imgDog.y + imgDog.height/2) >= (imgSwitcher.y + imgSwitcher.height/2)) dogB=true
+                    0 ->if(imgDog.x<(imgSwitcher.x+imgSwitcher.width) && ((imgDog.x+imgDog.width)>imgSwitcher.x)
+                        && (imgDog.y<(imgSwitcher.y+imgSwitcher.height))&& (imgDog.y + imgDog.height)>imgSwitcher.y)
+                        {dogB = true}
 
-                    2 ->
-                        if((imgCat.x + imgCat.width/2) >= (imgSwitcher.x + imgSwitcher.width/2)
-                            && (imgCat.y + imgCat.height/2) >= (imgSwitcher.y + imgSwitcher.height/2)) catB=true
-                    3 ->
-                        if((imgCat.x + imgCat.width/2) >= (imgSwitcher.x + imgSwitcher.width/2)
-                            && (imgCat.y + imgCat.height/2) >= (imgSwitcher.y + imgSwitcher.height/2)) catB=true
+                    1 ->if(imgDog.x<(imgSwitcher.x+imgSwitcher.width) && ((imgDog.x+imgDog.width)>imgSwitcher.x)
+                        && (imgDog.y<(imgSwitcher.y+imgSwitcher.height))&& (imgDog.y + imgDog.height)>imgSwitcher.y)
+                        {dogB = true}
+
+                    2 ->if(imgCat.x<(imgSwitcher.x+imgSwitcher.width) && ((imgCat.x+imgCat.width)>imgSwitcher.x)
+                        && (imgCat.y<(imgSwitcher.y+imgSwitcher.height))&& (imgCat.y + imgCat.height)>imgSwitcher.y)
+                        {catB = true}
+
+                    3 ->if(imgCat.x<(imgSwitcher.x+imgSwitcher.width) && ((imgCat.x+imgCat.width)>imgSwitcher.x)
+                        && (imgCat.y<(imgSwitcher.y+imgSwitcher.height))&& (imgCat.y + imgCat.height)>imgSwitcher.y)
+                        {catB = true}
                     else -> {dogB = false
                         catB = false}
 
                 }
                 results.text = counter.toString()
-                //Log.i("TAG", "dog " + imgDog.x +  "switcher "+ location[1] + "view "+ view.x)
+
             }
             true
         })
